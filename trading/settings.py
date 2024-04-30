@@ -34,7 +34,13 @@ ALLOWED_HOSTS = ['smart-algo.in','www.smart-algo.in','https://smart-algo.in','ht
 # Application definition
 
 INSTALLED_APPS = [
-    'ash',
+    "paper_admin",
+    "paper_admin.patches.dal",           
+    "paper_admin.patches.django_money",  
+    "paper_admin.patches.django_solo",   
+    "paper_admin.patches.mptt",          
+    "paper_admin.patches.logentry_admin",
+    "paper_admin.patches.tree_queries", 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -185,8 +191,6 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
 ASH_SITE_HEADER =  getattr(settings, 'ASH_SITE_HEADER', 'Smart-algo Admin')
 ASH_SITE_LOGO_ICON = getattr(settings, 'ASH_SITE_LOGO_ICON', 'icon-database')
-
-
 
 
 

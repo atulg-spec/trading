@@ -1,7 +1,10 @@
 from trade.alerts.suscription_check import suscribed,present
 from trade.models import *
 from django.utils import timezone
-from SmartApi import SmartConnect
+try:
+    from SmartApi import SmartConnect
+except:
+    from smartapi import smartConnect
 from trade.notifications.notify_alert import api_notify
 from trade.alerts.getsymbols import get_quantity
 

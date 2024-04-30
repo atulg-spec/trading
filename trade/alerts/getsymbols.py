@@ -62,7 +62,7 @@ def symbol_list():
     data = []
     with open('syb.csv', 'r', newline='') as csvfile:
         csvreader = csv.DictReader(csvfile)
-        
+
         for row in csvreader:
             data.append(row)
     return data
@@ -73,7 +73,7 @@ def rename_columns(input_csv_file, output_csv_file):
     with open(input_csv_file, 'r', newline='') as csvfile_in, \
          open(output_csv_file, 'w', newline='') as csvfile_out:
         reader = csv.DictReader(csvfile_in)
-        
+
         # Define the new column names
         fieldnames_out = reader.fieldnames
         fieldnames_out[fieldnames_out.index('Symbol')] = 'Trading Symbol'
@@ -100,7 +100,7 @@ def csv_to_python_object():
     data = []
     with open('/root/trading/syb.csv', 'r', newline='') as csvfile:
         csvreader = csv.DictReader(csvfile)
-        
+
         for row in csvreader:
             data.append(row)
 
@@ -108,19 +108,19 @@ def csv_to_python_object():
     #     csvreader = csv.DictReader(csvfile)
     #     for row in csvreader:
     #         data.append(row)
-            
+
     # # rename_columns('MCX.csv','newMCX.csv')
     # with open('newMCX.csv', 'r', newline='') as csvfile:
     #     csvreader = csv.DictReader(csvfile)
     #     for row in csvreader:
     #         data.append(row)
-    
+
     # # rename_columns('NFO.csv','newNFO.csv')
     # with open('newNFO.csv', 'r', newline='') as csvfile:
     #     csvreader = csv.DictReader(csvfile)
     #     for row in csvreader:
-    #         data.append(row)    
-            
+    #         data.append(row)
+
     return data
 
 def exc_symbols():

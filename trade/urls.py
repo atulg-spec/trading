@@ -40,6 +40,7 @@ urlpatterns = [
     path("tradestatus",views.tradestatus,name='tradestatus'),
     # --HISTORY--
     path("history",views.history,name='history'),
+    path("save_history",views.save_history,name='save_history'),
     # --CONTACT US--
     path("help",views.help,name='help'),
     # --WEBHOOK--

@@ -148,6 +148,29 @@ class tradebook(models.Model):
       a = "History"
       return a
 
+
+
+class tradeHistory(models.Model):
+   id=models.AutoField(primary_key=True)
+   user=models.ForeignKey(User,on_delete=models.CASCADE)
+   broker = models.CharField(max_length=100,default="")
+   client_id = models.CharField(max_length=100,default="")
+   symbol = models.CharField(max_length=100,default="")
+   quantity = models.IntegerField(default=0)
+   buy_avg = models.FloatField()
+   sell_avg = models.FloatField()
+   pnl = models.FloatField()
+   date_time = models.DateField(auto_now_add=True,null=True)
+   class Meta:
+         verbose_name = "Trade History"
+         verbose_name_plural = "Trade History"
+         unique_together = ('date_time', 'symbol', 'client_id','broker','user')
+   def __str__(self):
+      return self.symbol
+
+
+
+
 # CONTACT US
 class contactform(models.Model):
     contactid = models.AutoField(primary_key=True)

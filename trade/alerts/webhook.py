@@ -6,7 +6,12 @@ import threading
 import time
 from .getsymbols import get_symbol
 from alerts.models import IndexTokens
-from SmartApi import SmartConnect #or from SmartApi.smartConnect import SmartConnect
+SmartConnect = ''
+try:
+    from SmartApi import SmartConnect
+except:
+    from smartapi import SmartConnect
+
 sessions = []
 api_key = 'qy5tDMrp'
 clientId = 'A400396'

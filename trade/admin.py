@@ -153,6 +153,11 @@ class Notifications(admin.ModelAdmin):
     
 admin.site.register(Events)
 
+@admin.register(tradeHistory)
+class tradeHistory(admin.ModelAdmin):
+    list_display = ('user','client_id','symbol','quantity','buy_avg','sell_avg','pnl','date_time','broker')
+    list_filter = ('date_time','broker','user','client_id','symbol')
+
 # UN_REGISTER
 from django.contrib.sites.admin import SiteAdmin
 from django.contrib.sites.models import Site

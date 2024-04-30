@@ -10,7 +10,10 @@ import json
 from datetime import datetime,timedelta
 import pyotp
 from fyers_api import accessToken
-from SmartApi import SmartConnect
+try:
+    from SmartApi import SmartConnect
+except:
+    from smartapi import smartConnect
 from fyers_api import fyersModel
 from dhanhq import dhanhq
 from py5paisa import FivePaisaClient
@@ -899,6 +902,70 @@ def history(request):
         "not_seen":not_seen
                }
     return render(request,'history.html',context)
+
+
+
+
+@login_required
+def save_history(request):
+    dhanob = dhanapi.objects.filter(apiuser=request.user).first()
+    angelob = angelapi.objects.filter(apiuser=request.user).first()
+    aliceob = aliceapi.objects.filter(apiuser=request.user).first()
+    fyersob = fyersapi.objects.filter(apiuser=request.user).first()
+    for angelob in angelapi.objects.all():
+        if angelob is not None:
+            try:
+                obj=SmartConnect(api_key=angelob.apikey,
+                access_token = angelob.authtoken,
+                refresh_token = angelob.rtoken)
+                angel = obj.position()
+                for x in angel['data']:
+                    if int(x['totalbuyavgprice']) == 0 or int(x['totalsellavgprice']) == 0:
+                        pass
+                    else:
+                        tradeHistory.objects.create(user=angelob.apiuser,client_id=angelob.clientid,symbol=x['tradingsymbol'],quantity=x['buyqty'],buy_avg=x['totalbuyavgprice'],sell_avg=x['totalsellavgprice'],pnl=x['realised'])
+            except:
+                pass
+    for fyersob in fyersapi.objects.all():
+        if fyersob is not None:
+            try:
+                fy = fyersModel.FyersModel(client_id=fyersob.clientid, token=fyersob.accesstoken)
+                fyers = fy.positions()
+                for x in fyers['netPositions']:
+                    if int(x['buyAvg']) == 0 or int(x['sellAvg']) == 0:
+                        pass
+                    else:
+                        tradeHistory.objects.create(user=fyersob.apiuser,client_id=fyersob.clientid,symbol=x['symbol'],quantity=x['buyQty'],buy_avg=x['buyAvg'],sell_avg=x['sellAvg'],pnl=x['realized_profit'])
+            except:
+                pass
+    for aliceob in aliceapi.objects.all():
+        if aliceob is not None:
+            try:
+                alicebl = Aliceblue(user_id=aliceob.userid,api_key=aliceob.apikey)
+                sid = alicebl.get_session_id()
+                alice = alicebl.get_daywise_positions()
+                for x in alice:
+                    if int(x['Buyavgprc']) == 0 or int(x['Sellavgprc']) == 0:
+                        pass
+                    else:
+                        tradeHistory.objects.create(user=aliceob.apiuser,client_id=aliceob.clientid,symbol=x['Tsym'],quantity=x['Bqty'],buy_avg=x['Buyavgprc'],sell_avg=x['Sellavgprc'],pnl=x['realisedprofitloss'])
+            except:
+                pass
+    for dhanob in dhanapi.objects.all():
+        if dhanob is not None:
+            dhan = dhanhq(dhanob.clientid,dhanob.accesstoken).get_positions()
+            for x in dhan['data']:
+                if int(x['buyAvg']) == 0 or int(x['sellAvg']) == 0:
+                    pass
+                else:
+                    tradeHistory.objects.create(user=dhanob.apiuser,client_id=dhanob.clientid,symbol=x['tradingSymbol'],quantity=x['buyQty'],buy_avg=x['buyAvg'],sell_avg=x['sellAvg'],pnl=x['realizedProfit'])
+    return redirect('/admin/')
+
+
+
+
+
+
 
 def tradestatus(request):
     today = timezone.now().date()
