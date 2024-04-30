@@ -191,7 +191,7 @@
     <div class="card-header borderless ">
         <h5>API Dashboard</h5>
         <span class="d-block m-t-5">All <code>API's</code> will be displayed Here.</span>
-        <div class="card-header-right">
+        <div class="card-header-right mt-2">
             <div class="btn-group card-option">
                 <form action="/resetorder/" method="post">
                     {% csrf_token %}
@@ -200,6 +200,9 @@
                     </button>
                 </form>
             </div>
+            <a href="/save_history" class="btn btn-dark mx-4">
+                Update Trade History
+            </a>
         </div>
     </div>
 
