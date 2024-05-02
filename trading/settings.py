@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure--^t_hu$o8hc8kh#h!_6*o*ufr6w-c8(9l4j&96=g2@^72-rfon'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['smart-algo.in','www.smart-algo.in','https://smart-algo.in','https://www.smart-algo.in','127.0.0.1']
 
@@ -142,7 +142,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/trading/static'
+STATIC_ROOT = 'static'
 MEDIA_URL="/media/"
 
 # Default primary key field type

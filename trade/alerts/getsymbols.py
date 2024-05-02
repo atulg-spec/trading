@@ -98,11 +98,11 @@ def rename_columns(input_csv_file, output_csv_file):
 
 def csv_to_python_object():
     data = []
-    # with open('/root/trading/syb.csv', 'r', newline='') as csvfile:
-    #     csvreader = csv.DictReader(csvfile)
+    with open('/root/trading/syb.csv', 'r', newline='') as csvfile:
+        csvreader = csv.DictReader(csvfile)
 
-    #     for row in csvreader:
-    #         data.append(row)
+        for row in csvreader:
+            data.append(row)
 
     # with open('INDICES.csv', 'r', newline='') as csvfile:
     #     csvreader = csv.DictReader(csvfile)
