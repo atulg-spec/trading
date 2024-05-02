@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure--^t_hu$o8hc8kh#h!_6*o*ufr6w-c8(9l4j&96=g2@^72-rfon'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['smart-algo.in','www.smart-algo.in','https://smart-algo.in','https://www.smart-algo.in','127.0.0.1']
 
@@ -166,7 +166,6 @@ MESSAGE_TAGS = {
 }
 
 
-CSRF_TRUSTED_ORIGINS = ['https://smart-algo.in']
 
 SITE_ID=1
 SOCIALACCOUNT_LOGIN_ON_GET = True
