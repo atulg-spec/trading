@@ -13,22 +13,22 @@ except:
     from smartapi import SmartConnect
 
 sessions = []
-api_key = 'qy5tDMrp'
-clientId = 'A400396'
-pwd = '0786'
-smartApi = SmartConnect(api_key)
-token = "HPT2ZFLWDZMD77EAGVIEDQTQMI"
-totp=pyotp.TOTP(token).now()
-smartApi.generateSession(clientId, pwd, totp)
-sessions.append(smartApi)
-api_key = 'hVYSjEo2'
-smartApi2 = SmartConnect(api_key)
-smartApi2.generateSession(clientId, pwd, totp)
-sessions.append(smartApi2)
-api_key = '1IXBKk24'
-smartApi3 = SmartConnect(api_key)
-smartApi3.generateSession(clientId, pwd, totp)
-sessions.append(smartApi3)
+# api_key = 'qy5tDMrp'
+# clientId = 'A400396'
+# pwd = '0786'
+# smartApi = SmartConnect(api_key)
+# token = "HPT2ZFLWDZMD77EAGVIEDQTQMI"
+# totp=pyotp.TOTP(token).now()
+# smartApi.generateSession(clientId, pwd, totp)
+# sessions.append(smartApi)
+# api_key = 'hVYSjEo2'
+# smartApi2 = SmartConnect(api_key)
+# smartApi2.generateSession(clientId, pwd, totp)
+# sessions.append(smartApi2)
+# api_key = '1IXBKk24'
+# smartApi3 = SmartConnect(api_key)
+# smartApi3.generateSession(clientId, pwd, totp)
+# sessions.append(smartApi3)
 
 def get_price(segment,symbol,token,c=1):
     for x in sessions:

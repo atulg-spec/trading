@@ -34,13 +34,7 @@ ALLOWED_HOSTS = ['smart-algo.in','www.smart-algo.in','https://smart-algo.in','ht
 # Application definition
 
 INSTALLED_APPS = [
-    "paper_admin",
-    "paper_admin.patches.dal",           
-    "paper_admin.patches.django_money",  
-    "paper_admin.patches.django_solo",   
-    "paper_admin.patches.mptt",          
-    "paper_admin.patches.logentry_admin",
-    "paper_admin.patches.tree_queries", 
+    "ash",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
