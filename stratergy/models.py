@@ -209,7 +209,10 @@ class StratergyAlert(models.Model):
         verbose_name = "Stratergy Alert"
         verbose_name_plural = "Stratergy Alerts"
     def save(self, *args, **kwargs):
-        self.symbol = get_dhan_symbol(self.token)
+        seg = 'ES'
+        if self.segment == 0:
+            seg = 'INDEX'
+        self.symbol = get_dhan_symbol(self.token,seg)
         self.gap = (self.high - self.low) / 2
         if datetime.datetime.now().time() > self.start_time and datetime.datetime.now().time() < self.end_time:
             if datetime.datetime.now().time().minute == self.start_time.minute:

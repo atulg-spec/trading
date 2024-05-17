@@ -51,18 +51,19 @@ def get_symbol(exchange_token):
         else:
             return instrument.iloc[0]["tradingsymbol"]
 
-def get_dhan_symbol(exchange_token):
-    if not exchange_token or str(exchange_token).strip() == '':
+import csv
+
+def get_dhan_symbol(exchange_token, instrument_type):
+    if not exchange_token or str(exchange_token).strip() == '' or not instrument_type or str(instrument_type).strip() == '':
         return None
     file_path = 'dhan_syb.csv'
     exchange_token = float(exchange_token)
     with open(file_path, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            if float(row['SEM_SMST_SECURITY_ID']) == exchange_token:
+            if float(row['SEM_SMST_SECURITY_ID']) == exchange_token and row['SEM_EXCH_INSTRUMENT_TYPE'] == instrument_type:
                 return row['SEM_TRADING_SYMBOL']
     return None
-
 
 # Example usage:
 # token = '35545'
