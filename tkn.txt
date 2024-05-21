@@ -1,2 +1,2 @@
 
-NSE_EQ|INE062A01020 
+NSE_INDEX|Nifty Bank 
